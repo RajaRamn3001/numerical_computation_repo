@@ -96,7 +96,7 @@ int main()
  F[1]=f2(X[0],X[1]);
  tolerance=10e-8;
  do
- { double Xn[m];
+ { double delX[m];
    error_sqrsm=0;
    make_jacobi(jacobi,X,dX);
    //2.020000 1.980000 
@@ -108,25 +108,25 @@ int main()
    for(int i=0;i<m;i++)
    //2.020000 1.980000 7.999600 
    //-0.000000 0.019802 -3.960198 
-   backsubstitute(Xn,aug_mat,m,m);
-   printf("%lf %lf",Xn[0]+X[0],Xn[1]+X[1]);
+   backsubstitute(delX,aug_mat,m,m);
+   printf("%lf %lf",delX[0]+X[0],delX[1]+X[1]);
    //-------------------------print jacobi
    
    //----------------------------------
    for (int i=0;i<m;i++)
    {
-    error_sqrsm+=pow(Xn[i],2);
+    error_sqrsm+=pow(delX[i],2);
    }
    printf("\n");
    if(sqrt(error_sqrsm)<tolerance)
    { 
     printf("successful");
-    printf("%lf %lf",Xn[0]+X[0],Xn[1]+X[1]);
+    printf("%lf %lf",delX[0]+X[0],delX[1]+X[1]);
     break;
    }
    for (int i=0;i<m;i++)
    {
-    X[i]=Xn[i]+X[i];
+    X[i]=delX[i]+X[i];
    }
    F[0]=f1(X[0],X[1]);
    F[1]=f2(X[0],X[1]);
