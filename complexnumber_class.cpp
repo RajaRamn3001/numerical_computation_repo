@@ -8,7 +8,8 @@ class Complex_num {        // The class
     float real;  // Attribute
     float img;  // Attribute
 
-    void assign(float x,float y) { // Constructor with parameters
+    void assign(float x,float y) 
+    { // Constructor with parameters
       real = x;
       img = y;
       
